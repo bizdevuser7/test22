@@ -1,38 +1,353 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My GitHub Pages Site</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-        }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #667eea;
-            text-align: center;
-        }
-        p {
-            line-height: 1.6;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Woot Networks are Integrated Networks</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f7f5ef;
+  --paper: #fffdf8;
+  --paper-strong: #ffffff;
+  --ink: #171717;
+  --muted: #66645f;
+  --line: #d8d3c7;
+  --line-strong: #bcb4a5;
+  --green: #28724f;
+  --blue: #2359a6;
+  --red: #ad3f32;
+  --amber: #9d6b1d;
+  --shadow: 0 16px 50px rgba(32, 29, 22, 0.08);
+  --radius: 8px;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: Georgia, "Times New Roman", serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    linear-gradient(90deg, rgba(23, 23, 23, 0.05) 1px, transparent 1px) 0 0 / 88px 88px,
+    linear-gradient(0deg, rgba(23, 23, 23, 0.035) 1px, transparent 1px) 0 0 / 88px 88px,
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.45;
+}
+a { color: inherit; }
+.app-shell { min-height: 100vh; }
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; min-height: 64px;
+  padding: 12px clamp(16px, 4vw, 40px);
+  border-bottom: 1px solid var(--line);
+  background: rgba(247, 245, 239, 0.92);
+  backdrop-filter: blur(14px);
+}
+.brand-mark {
+  position: relative; display: grid;
+  width: 42px; height: 42px; place-items: center;
+  border: 1px solid var(--ink); border-radius: 50%;
+  background: var(--paper); text-decoration: none;
+}
+.brand-mark::before, .brand-mark::after {
+  position: absolute; content: ""; width: 23px; height: 1px;
+  background: var(--ink); transform-origin: center;
+}
+.brand-mark::before { transform: rotate(28deg); }
+.brand-mark::after { transform: rotate(-34deg); }
+.brand-node {
+  position: absolute; z-index: 1; width: 7px; height: 7px;
+  border-radius: 50%; background: var(--ink);
+}
+.brand-node:nth-child(1) { transform: translate(-11px, -8px); }
+.brand-node:nth-child(2) { transform: translate(12px, -2px); }
+.brand-node:nth-child(3) { transform: translate(-1px, 12px); }
+.layout {
+  display: grid;
+  grid-template-columns: minmax(132px, 0.44fr) minmax(0, 1.65fr);
+  align-items: start;
+  gap: clamp(20px, 4vw, 42px);
+  width: min(1560px, 100%);
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 46px) clamp(16px, 4vw, 40px) 72px;
+}
+.resource-rail { position: sticky; top: 88px; }
+.rail-card, .index-panel, .reader {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 248, 0.88);
+}
+.rail-card { padding: 14px; }
+.rail-heading, .index-toolbar p {
+  margin: 0; color: var(--muted);
+  font-size: 0.78rem; font-weight: 800; text-transform: uppercase;
+}
+.resource-list {
+  display: grid; gap: 7px;
+  margin: 12px 0 0; padding: 0; list-style: none;
+}
+.resource-list li {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px; min-width: 0;
+}
+.resource-list a {
+  overflow: hidden; color: var(--blue);
+  font-size: 0.94rem; text-decoration-thickness: 1px;
+  text-overflow: ellipsis; white-space: nowrap;
+}
+.empty-note, .empty-state p { margin: 0; color: var(--muted); }
+.empty-note { margin-top: 12px; font-size: 0.9rem; }
+.manifesto { min-width: 0; }
+.title-block { margin-bottom: 28px; }
+.kicker {
+  margin: 0 0 12px; color: var(--green);
+  font-size: 0.82rem; font-weight: 800; text-transform: uppercase;
+}
+h1 {
+  max-width: 12ch; margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 8vw, 7.8rem);
+  font-weight: 500; line-height: 0.95;
+}
+.lede {
+  max-width: 680px; margin: 20px 0 0;
+  color: #34322f; font-family: var(--serif);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+}
+.lede:empty { display: none; }
+.cover-and-index {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.72fr) minmax(280px, 1fr);
+  gap: clamp(18px, 3vw, 32px); align-items: start;
+}
+.network-cover {
+  position: relative; min-height: 420px; margin: 0; overflow: hidden;
+  border: 1px solid var(--ink); border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 18% 16%, rgba(40, 114, 79, 0.18), transparent 24%),
+    radial-gradient(circle at 76% 28%, rgba(35, 89, 166, 0.16), transparent 27%),
+    linear-gradient(135deg, #fffdf8 0%, #eee8db 100%);
+  box-shadow: var(--shadow);
+  aspect-ratio: 0.72;
+}
+.network-cover::before, .network-cover::after {
+  position: absolute; inset: 12%; content: "";
+  border: 1px solid rgba(23, 23, 23, 0.34);
+  transform: rotate(-8deg);
+}
+.network-cover::after {
+  inset: 22% 8% 28% 18%;
+  border-color: rgba(35, 89, 166, 0.42);
+  transform: rotate(18deg);
+}
+.network-grid {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(29deg, transparent 0 18%, rgba(23, 23, 23, 0.5) 18% 18.4%, transparent 18.4% 100%),
+    linear-gradient(116deg, transparent 0 31%, rgba(40, 114, 79, 0.48) 31% 31.4%, transparent 31.4% 100%),
+    linear-gradient(153deg, transparent 0 44%, rgba(35, 89, 166, 0.42) 44% 44.3%, transparent 44.3% 100%),
+    linear-gradient(72deg, transparent 0 59%, rgba(23, 23, 23, 0.38) 59% 59.3%, transparent 59.3% 100%),
+    linear-gradient(144deg, transparent 0 72%, rgba(173, 63, 50, 0.32) 72% 72.3%, transparent 72.3% 100%);
+}
+.network-grid span {
+  position: absolute;
+  left: var(--x); top: var(--y);
+  width: var(--s); height: var(--s);
+  border: 2px solid var(--ink); border-radius: 50%;
+  background: var(--paper-strong);
+  box-shadow: 0 0 0 7px rgba(255, 253, 248, 0.72);
+}
+.network-cover figcaption {
+  position: absolute; right: 18px; bottom: 18px; left: 18px;
+  display: flex; align-items: end; justify-content: space-between;
+  gap: 16px; min-height: 82px; padding-top: 18px;
+  border-top: 1px solid rgba(23, 23, 23, 0.24);
+}
+.network-cover figcaption > span {
+  color: var(--muted); font-size: 0.86rem; font-weight: 700; text-transform: uppercase;
+}
+.network-cover strong {
+  color: var(--ink); font-family: var(--serif);
+  font-size: 1.42rem; font-weight: 500; text-align: right;
+}
+.index-panel { min-height: 420px; padding: 0; overflow: hidden; }
+.index-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; min-height: 58px; padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.empty-state {
+  display: grid; min-height: 260px; place-items: center;
+  gap: 12px; padding: 24px; text-align: center;
+}
+.section-list {
+  display: grid; gap: 0; margin: 0; padding: 0;
+  list-style: none; counter-reset: sections;
+}
+.section-item { counter-increment: sections; border-bottom: 1px solid var(--line); }
+.section-item:last-child { border-bottom: 0; }
+.section-head {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px; align-items: center;
+  padding: 15px 16px; background: rgba(247, 245, 239, 0.62);
+}
+.section-number::before {
+  content: counter(sections, decimal-leading-zero);
+  color: var(--green); font-family: var(--serif); font-size: 1.25rem;
+}
+.section-title {
+  overflow-wrap: anywhere; font-family: var(--serif);
+  font-size: 1.38rem; line-height: 1.14;
+}
+.post-list { margin: 0; padding: 0; list-style: none; }
+.post-item { border-top: 1px solid var(--line); }
+.post-button {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px; width: 100%; min-height: 64px;
+  padding: 12px 16px 12px 48px;
+  border: 0; background: transparent; color: var(--ink);
+  text-align: left; text-decoration: none;
+}
+.post-button:hover, .post-button:focus-visible {
+  background: #eef4ef; outline: 0;
+}
+.post-title { display: block; overflow-wrap: anywhere; font-weight: 720; }
+.post-meta {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px;
+  color: var(--muted); font-size: 0.82rem;
+}
+.post-status {
+  display: inline-flex; align-items: center; min-height: 22px;
+  padding: 0 8px; border: 1px solid var(--line-strong);
+  border-radius: 999px; color: var(--muted);
+  font-size: 0.72rem; font-weight: 800; text-transform: uppercase;
+}
+.post-status.live {
+  border-color: rgba(40, 114, 79, 0.4);
+  background: rgba(40, 114, 79, 0.09);
+  color: var(--green);
+}
+.post-status.scheduled {
+  border-color: rgba(157, 107, 29, 0.42);
+  background: rgba(157, 107, 29, 0.1);
+  color: var(--amber);
+}
+.reader { margin-top: 28px; padding: clamp(20px, 4vw, 34px); }
+.reader h2 {
+  max-width: 760px; margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 4.7rem);
+  font-weight: 500; line-height: 1.02;
+}
+.reader-meta {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  margin: 0 0 14px; color: var(--muted);
+}
+.reader-summary {
+  max-width: 760px; margin: 22px 0 0;
+  color: #2c2a27; font-family: var(--serif); font-size: 1.24rem;
+}
+.reader-subsections {
+  display: grid; gap: 12px; margin: 26px 0 0;
+  padding: 0; list-style: none;
+}
+.reader-subsections li {
+  display: grid; grid-template-columns: 38px minmax(0, 1fr);
+  gap: 12px; align-items: baseline;
+  padding-top: 12px; border-top: 1px solid var(--line);
+  font-family: var(--serif); font-size: 1.2rem;
+}
+.reader-subsections span { color: var(--green); font-size: 0.92rem; }
+.reader-link {
+  display: inline-flex; align-items: center;
+  margin-top: 26px; color: var(--blue); font-weight: 800;
+}
+@media (max-width: 1180px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .resource-rail { position: static; grid-column: 1 / -1; }
+  .rail-card {
+    display: grid; grid-template-columns: auto minmax(0, 1fr);
+    align-items: center; gap: 14px;
+  }
+  .resource-list { display: flex; flex-wrap: wrap; margin: 0; }
+  .empty-note { margin-top: 0; }
+}
+@media (max-width: 900px) {
+  .cover-and-index { grid-template-columns: 1fr; }
+  .network-cover { min-height: 300px; aspect-ratio: 1.28; }
+  h1 { max-width: 13ch; }
+}
+@media (max-width: 640px) {
+  .site-header { align-items: flex-start; }
+  .layout { padding-inline: 12px; }
+  .rail-card { grid-template-columns: 1fr; }
+  h1 { font-size: 2.75rem; }
+  .post-button { grid-template-columns: 1fr; padding-left: 16px; }
+  .post-status { width: fit-content; }
+  .reader-subsections li { grid-template-columns: 30px minmax(0, 1fr); }
+}
+
+body[data-published] .reader + .reader { margin-top: 18px; }
+</style>
 </head>
-<body>
-    <div class="container">
-        <h1>Welcome to test22</h1>
-        <p>This is your GitHub Pages site! Edit this file and customize it to make it your own.</p>
-        <p>You can add more HTML files, CSS stylesheets, and JavaScript to create a full website.</p>
-    </div>
+<body data-published>
+<div class="app-shell">
+<header class="site-header" aria-label="Site header">
+<a class="brand-mark" href="#top" aria-label="Home">
+<span class="brand-node"></span><span class="brand-node"></span><span class="brand-node"></span>
+</a>
+</header>
+<main class="layout" id="top">
+<aside class="resource-rail" aria-label="Resources">
+<div class="rail-card">
+<p class="rail-heading">Resources</p>
+<ul class="resource-list"><li><a href="sss" target="_blank" rel="noreferrer">Test</a></li></ul>
+</div>
+</aside>
+<section class="manifesto" aria-label="Manifesto table of contents">
+<div class="title-block">
+
+<h1>Woot Networks are Integrated Networks</h1>
+<p class="lede">hello there!!!</p>
+</div>
+<div class="cover-and-index">
+<figure class="network-cover" aria-label="Resilient network cover art">
+<div class="network-grid" aria-hidden="true">
+<span style="--x: 12%; --y: 18%; --s: 10px;"></span>
+<span style="--x: 32%; --y: 14%; --s: 7px;"></span>
+<span style="--x: 56%; --y: 24%; --s: 12px;"></span>
+<span style="--x: 78%; --y: 16%; --s: 8px;"></span>
+<span style="--x: 18%; --y: 48%; --s: 8px;"></span>
+<span style="--x: 42%; --y: 56%; --s: 13px;"></span>
+<span style="--x: 66%; --y: 52%; --s: 7px;"></span>
+<span style="--x: 84%; --y: 70%; --s: 11px;"></span>
+<span style="--x: 28%; --y: 82%; --s: 9px;"></span>
+<span style="--x: 60%; --y: 86%; --s: 10px;"></span>
+</div>
+<figcaption>
+<span>Summer outline</span>
+<strong>0 live posts</strong>
+</figcaption>
+</figure>
+<div class="index-panel">
+<div class="index-toolbar"><p>Outline</p></div>
+<div class="empty-state"><p>No parts yet.</p></div>
+</div>
+</div>
+
+</section>
+</main>
+</div>
 </body>
 </html>
+
+
+
+
+
+
